@@ -1,0 +1,427 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "STACK"
+   ]
+  },
+  {
+   "cell_type": "raw",
+   "metadata": {},
+   "source": [
+    "this is made with the help of python list and built in functions "
+   ]
+  },
+  {
+   "cell_type": "raw",
+   "metadata": {},
+   "source": [
+    "another implementation has been shown in class "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class stack():\n",
+    "    def __init__(self):\n",
+    "        self.stackk = []\n",
+    "    \n",
+    "    def push(self, val ):\n",
+    "        self.stackk.append(val)\n",
+    "        \n",
+    "    def pop(self):\n",
+    "        self.stackk.pop()\n",
+    "        \n",
+    "    def look_top(self):\n",
+    "        print(self.stackk[0])\n",
+    "        \n",
+    "    def look(self):\n",
+    "        print(self.stackk[-1])\n",
+    "        \n",
+    "        "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 45,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "3\n",
+      "2\n"
+     ]
+    }
+   ],
+   "source": [
+    "s = stack() \n",
+    "s.push(1)\n",
+    "s.push(2)\n",
+    "s.push(3) \n",
+    "s.look()\n",
+    "s.pop()\n",
+    "s.look()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "QUEUE"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 115,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class queue():\n",
+    "    def __init__(self):\n",
+    "        self.que = [2,3]\n",
+    "        self.poi = 0\n",
+    "        self.tail = 0\n",
+    "        \n",
+    "        self.empty = True\n",
+    "        self.full = False \n",
+    "        \n",
+    "    def inc(self, index):\n",
+    "        return index + 1\n",
+    "        \n",
+    "        \n",
+    "        \n",
+    "    \n",
+    "    def enque(self ,val):\n",
+    "        if self.full is True:\n",
+    "            print(\"queue is full\")     #this cannot happen \n",
+    "            return \n",
+    "        \n",
+    "        self.que[self.poi] = val\n",
+    "        self.poi = self.inc(self.poi)\n",
+    "        self.empty = False\n",
+    "        return \n",
+    "        \n",
+    "    def deque(self):\n",
+    "        if self.empty is True:\n",
+    "            print(\"nothing to pop\")\n",
+    "            return \n",
+    "        \n",
+    "        self.que[self.tail].pop()\n",
+    "        self.tail = self.inc(self.tail)\n",
+    "        return \n",
+    "        \n",
+    "        \n",
+    "        "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "q = queue()\n",
+    "q.enque(2)\n",
+    "q.enque(20)\n",
+    "q.enque(200)\n",
+    "q.enque(2000)\n",
+    "q.enque(20000)\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "TREES"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 75,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class node:\n",
+    "    def __init__(self, data):\n",
+    "        self.val = data\n",
+    "        self.left = None\n",
+    "        self.right = None"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 102,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class BST(node): \n",
+    "    def __init__(self, val, parent = None): \n",
+    "        super().__init__(val)\n",
+    "        self.parent = parent \n",
+    "        \n",
+    "\n",
+    "    \n",
+    "    def insert(self, val): \n",
+    "        if val < self.val:   \n",
+    "            if self.left is None: \n",
+    "                new_node = BST(val, parent=self) \n",
+    "                self.left = new_node \n",
+    "            else: \n",
+    "                self.left.insert(val) \n",
+    "        \n",
+    "        else:\n",
+    "            if self.right is None: \n",
+    "                self.right = BST(val, parent=self) \n",
+    "            else: \n",
+    "                self.right.insert(val) \n",
+    "\n",
+    "                \n",
+    "    def inorder(self): \n",
+    "        if self.left: \n",
+    "            self.left.inorder()\n",
+    "        \n",
+    "        print(self.val) \n",
+    "    \n",
+    "        if self.right: \n",
+    "            self.right.inorder() \n",
+    "            \n",
+    "    def find_root(self): \n",
+    "        temp = self \n",
+    "        while temp.parent is not None: \n",
+    "            temp = temp.parent \n",
+    "        return temp \n",
+    "    \n",
+    "    def minn(self): \n",
+    "        min_node = self \n",
+    "        if self.left is not None: \n",
+    "            min_node = self.left.minn()\n",
+    "        return min_node \n",
+    "    \n",
+    "    def set_for_parent(self, new_ref):\n",
+    "        if self.parent is None: return \n",
+    "        if self.parent.right == self: \n",
+    "            self.parent.right = new_ref;\n",
+    "        if self.parent.left == self: \n",
+    "            self.parent.left = new_ref;\n",
+    "            \n",
+    "            \n",
+    "    def replace_with_node(self, node):     \n",
+    "        self.set_for_parent(node)    \n",
+    "        node.parent = self.parent    \n",
+    "        return node.find_root()      \n",
+    "\n",
+    "    def delete(self, val): \n",
+    "        if self.val == val: \n",
+    "            if self.right is None and self.left is None: \n",
+    "                self.set_for_parent(None)\n",
+    "                return self.find_root()\n",
+    "            if self.right is None: \n",
+    "                return self.replace_with_node(self.left)\n",
+    "            if self.left is None: \n",
+    "                return self.replace_with_node(self.right)\n",
+    "            successor = self.right.minn()  \n",
+    "            self.val = successor.val \n",
+    "        \n",
+    "        \n",
+    "            return self.right.delete(successor.val)  \n",
+    "        if val < self.val : \n",
+    "            if self.left: \n",
+    "                return self.left.delete(val)\n",
+    "            else:\n",
+    "                return self.find_root()\n",
+    "        else: \n",
+    "            if self.right is not None:\n",
+    "                return self.right.delete(val) \n",
+    "            else: \n",
+    "                return self.find_root() \n",
+    "        \n",
+    " \n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 105,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "10\n",
+      "20\n",
+      "21\n",
+      "24\n",
+      "25\n",
+      "26\n",
+      "========================================================================================\n",
+      "10\n",
+      "20\n",
+      "21\n",
+      "24\n"
+     ]
+    }
+   ],
+   "source": [
+    "b = BST(20)\n",
+    "b.insert(24)\n",
+    "b.insert(21)\n",
+    "b.insert(10) \n",
+    "b.insert(25) \n",
+    "b.insert(26)\n",
+    "b.inorder()\n",
+    "b.delete(25)\n",
+    "b.delete(26)\n",
+    "\n",
+    "\n",
+    "print(\"========================================================================================\")\n",
+    "b.inorder()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "graphs"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 106,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class graph: \n",
+    "    def __init__(self): \n",
+    "        self.g = {} \n",
+    "        \n",
+    "        \n",
+    "        \n",
+    "        \n",
+    "        \n",
+    "    def add_node(self, node): \n",
+    "        if node in self.g: \n",
+    "            print(\"node already present \")\n",
+    "            return \n",
+    "            \n",
+    "        self.g[node] = []\n",
+    "        \n",
+    "        \n",
+    "\n",
+    "\n",
+    "    def add_edge(self, x, y): \n",
+    "         \n",
+    "        if x not in self.g: \n",
+    "            print(\"node no in graph \")\n",
+    "            return\n",
+    "        if y not in self.g: \n",
+    "            print(\"node no in graph \")\n",
+    "            return\n",
+    "            \n",
+    "        listt = self.g[x]\n",
+    "        if y in listt: \n",
+    "            return \n",
+    "        \n",
+    "        listt.append(y)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 110,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "g = graph() \n",
+    "g.add_node(1)\n",
+    "g.add_node(2) \n",
+    "g.add_node(3) \n",
+    "g.add_node(4) \n",
+    "g.add_node(5) \n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 114,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "g.add_edge(1, 2)\n",
+    "g.add_edge(1,3)\n",
+    "g.add_edge(1,4)\n",
+    "g.add_edge(2,5)\n",
+    "g.add_edge(3,4)\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
